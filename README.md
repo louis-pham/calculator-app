@@ -1,8 +1,6 @@
 # Calculator App
 
-My first ever React project! :D
-
-A simple calculator.
+My first ever React project! :D It's a calculator.
 
 (Live demo link to be added)
 
