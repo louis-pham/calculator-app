@@ -200,3 +200,5 @@ const chooseOperator = (operator) => {
     return;
   }
 };
+
+export default Calculator;
