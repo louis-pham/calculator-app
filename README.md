@@ -4,6 +4,10 @@ A simple calculator built with React.
 
 (Live demo link to be added)
 
+##Known Issues
+
+- pressing equals twice initially at start will crash (not properly handling equals operator)
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
