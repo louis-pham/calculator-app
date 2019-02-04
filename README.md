@@ -1,10 +1,12 @@
 # Calculator App
 
-A simple calculator built with React.
+My first ever React project! :D
+
+A simple calculator.
 
 (Live demo link to be added)
 
-##Known Issues
+## Known Issues
 
 - pressing equals twice initially at start will crash (not properly handling equals operator)
 
