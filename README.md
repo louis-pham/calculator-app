@@ -4,6 +4,11 @@ My first React project! :D It's a calculator.
 
 Live demo found here: http://louis-pham--calculator-app.surge.sh/
 
+## Future enhancements
+
+- single operand operators? ( x^2, sin(x), sqrt, etc.)
+- display history
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
