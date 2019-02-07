@@ -2,7 +2,7 @@
 
 My first React project! :D It's a calculator.
 
-Live demo found here: http://louis-pham--calculator-app.surge.sh/
+Live demo found here: http://calculator.louis-pham.surge.sh/
 
 ## Future enhancements
 
