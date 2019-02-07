@@ -7,7 +7,12 @@ Live demo found here: http://louis-pham--calculator-app.surge.sh/
 ## Known Issues
 
 - pressing equals twice initially at start will crash (not properly handling equals operator)
-- still some unnatural operator behaviour 
+- still some unnatural operator behaviour
+
+## Todo
+
+- add number buttons
+- make it look nice 
 
 ---
 
