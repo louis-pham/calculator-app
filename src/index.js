@@ -261,15 +261,17 @@ class Calculator extends React.Component {
           {this.createNumberButtons()}
         </div>
         <div className="state-display">
-          <ul>
-            <li>input: {this.state.inputValue}</li>
-            <li>a: {this.state.firstOperand}</li>
-            <li>op: {this.state.operator}</li>
-            <li>b: {this.state.secondOperand}</li>
-            <li>waiting for b: {this.state.waitingForSecondOperand.toString()}</li>
-            <li>input changed: {this.state.inputChanged.toString()}</li>
-            <li></li>
-          </ul>
+          {/*
+            <ul>
+              <li>input: {this.state.inputValue}</li>
+              <li>a: {this.state.firstOperand}</li>
+              <li>op: {this.state.operator}</li>
+              <li>b: {this.state.secondOperand}</li>
+              <li>waiting for b: {this.state.waitingForSecondOperand.toString()}</li>
+              <li>input changed: {this.state.inputChanged.toString()}</li>
+              <li></li>
+            </ul>
+          */}
         </div>
       </div>
     );

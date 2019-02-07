@@ -22,8 +22,7 @@ input {
     ". operator-buttons ."
     ". . ."
     ". number-buttons ."
-    ". state-display ."
-  ;
+  ; /* ". state-display ." */
 }
 
 .button {
@@ -58,29 +57,6 @@ input {
   grid-gap: 4px;
 }
 
-.button-zero {
-  grid-column: 1 / 4;
-  grid-row: 4;
-}
-
-.number-buttons {
-  grid-area: number-buttons;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  grid-gap: 4px;
-}
-
-.button-number {
-  background-color: #70b0ff;
-  border-color: black;
-}
-
-.button-number:active {
-  border: 2px outset #717171;
-  background-color: #4196ff;
-}
-
 .button-operator {
   background-color: #ffcccc;
   border-color: #ff7e40 #f99 #ff4d53;
@@ -104,7 +80,29 @@ input {
   background-color: #e4d734;
 }
 
-.state-display {
-  grid-area: state-display;
+.number-buttons {
+  grid-area: number-buttons;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 4px;
 }
-/* csslint ignore:end */
+
+.button-number {
+  background-color: #70b0ff;
+  border-color: black;
+}
+
+.button-number:active {
+  border: 2px outset #717171;
+  background-color: #4196ff;
+}
+
+.button-zero {
+  grid-column: 1 / 4;
+  grid-row: 4;
+}
+
+/* .state-display {
+  grid-area: state-display;
+} */
