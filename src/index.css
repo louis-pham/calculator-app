@@ -86,7 +86,7 @@ input {
   border-color: #ff7e40 #f99 #ff4d53;
 }
 
-.button-operator:active {
+.button-operator:active, .button-operator.active {
   border: 2px outset #bb2424;
   background-color: #ef8b8b;
 }

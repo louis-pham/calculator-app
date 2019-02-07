@@ -19,9 +19,11 @@ function CalculatorButton(props) {
       buttonClass = "";
   }
 
+  let activeClass = (props.isActive) ? " active" : "";
+
   return (
     <button
-      className={"button " + buttonClass}
+      className={"button " + buttonClass + activeClass}
       value={props.value}
       onClick={props.onClick}>
       {props.displayText}
@@ -111,6 +113,7 @@ class Calculator extends React.Component {
         }
       } else {
         // operator was clicked
+        e.target.classList.add('active');
         if (!this.state.waitingForSecondOperand) {
           this.setState({
             firstOperand: input,
@@ -129,6 +132,7 @@ class Calculator extends React.Component {
               firstOperand: c,
               inputValue: c,
               secondOperand: b,
+              operator: e.target.value,
               waitingForSecondOperand: true,
               inputChanged: false,
             });
@@ -149,20 +153,20 @@ class Calculator extends React.Component {
     });
   }
 
-handleNumberClick(e) {
-  if (!this.state.inputChanged) {
-    // if on operator was just clicked, overwrite the current input
-    this.setState({
-      inputValue: e.target.value,
-      inputChanged: true,
-    });
-  } else {
-    let currentInput = this.state.inputValue;
-    this.setState({
-      inputValue: parseFloat(currentInput.toString() + e.target.value),
-    });
+  handleNumberClick(e) {
+    if (!this.state.inputChanged) {
+      // if on operator was just clicked, overwrite the current input
+      this.setState({
+        inputValue: e.target.value,
+        inputChanged: true,
+      });
+    } else {
+      let currentInput = this.state.inputValue;
+      this.setState({
+        inputValue: parseFloat(currentInput.toString() + e.target.value),
+      });
+    }
   }
-}
 
   clearEntry() {
     this.setState({
@@ -177,7 +181,7 @@ handleNumberClick(e) {
       secondOperand: null,
       operator: null,
       waitingForSecondOperand: false,
-      // inputChanged: true,
+      inputChanged: false,
     });
   }
 
@@ -216,6 +220,7 @@ handleNumberClick(e) {
           key={button.key}
           value={button.value}
           displayText={button.displayText}
+          isActive={!this.state.inputChanged && this.state.waitingForSecondOperand && (button.value === this.state.operator)}
           onClick={this.handleClick}
         />
       );
@@ -255,7 +260,17 @@ handleNumberClick(e) {
         <div className="number-buttons">
           {this.createNumberButtons()}
         </div>
-        <div className="state-display">{this.state.firstOperand}, {this.state.operator},  {this.state.secondOperand}</div>
+        <div className="state-display">
+          <ul>
+            <li>input: {this.state.inputValue}</li>
+            <li>a: {this.state.firstOperand}</li>
+            <li>op: {this.state.operator}</li>
+            <li>b: {this.state.secondOperand}</li>
+            <li>waiting for b: {this.state.waitingForSecondOperand.toString()}</li>
+            <li>input changed: {this.state.inputChanged.toString()}</li>
+            <li></li>
+          </ul>
+        </div>
       </div>
     );
   }
