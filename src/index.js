@@ -17,6 +17,7 @@ function CalculatorButton(props) {
 function CalculatorInput(props) {
     return (
       <input
+        id="input-display"
         value={props.value}
         onChange={props.onChange}
       />
@@ -116,6 +117,10 @@ class Calculator extends React.Component {
               waitingForSecondOperand: true,
               inputChanged: false,
             });
+          } else {
+            this.setState({
+              operator: e.target.value,
+            });
           }
         }
       }
@@ -130,10 +135,18 @@ class Calculator extends React.Component {
   }
 
 handleNumberClick(e) {
-  let currentInput = this.state.inputValue;
-  this.setState({
-    inputValue: parseFloat(currentInput.toString() + e.target.value),
-  });
+  if (!this.state.inputChanged) {
+    // if on operator was just clicked, overwrite the current input
+    this.setState({
+      inputValue: e.target.value,
+      inputChanged: true,
+    });
+  } else {
+    let currentInput = this.state.inputValue;
+    this.setState({
+      inputValue: parseFloat(currentInput.toString() + e.target.value),
+    });
+  }
 }
 
   clearEntry() {
@@ -142,7 +155,7 @@ handleNumberClick(e) {
     });
   }
 
-  clearAll(e) {
+  clearAll() {
     this.setState({
       inputValue: 0,
       firstOperand: null,
@@ -151,6 +164,45 @@ handleNumberClick(e) {
       waitingForSecondOperand: false,
       // inputChanged: true,
     });
+  }
+
+  createNumberButtons = () => {
+    let buttonContainer = [];
+
+    for (let i=9; i >= 0; i--) {
+      buttonContainer.push(
+        <CalculatorButton
+          buttonType=""
+          value={i}
+          displayText={i}
+          onClick={this.handleNumberClick}
+        />
+      );
+    }
+    return buttonContainer;
+  }
+
+  createOperatorButtons = () => {
+    let buttonContainer = [];
+    let buttons = [
+      { value: "add", displayText: "+" },
+      { value: "subtract", displayText: "-" },
+      { value: "multiply", displayText: "x" },
+      { value: "divide", displayText: "/" },
+      { value: "equals", displayText: "=" },
+    ];
+
+    for (let button of buttons) {
+      buttonContainer.push(
+        <CalculatorButton
+          buttonType="operator"
+          value={button.value}
+          displayText={button.displayText}
+          onClick={this.handleClick}
+        />
+      );
+    }
+    return buttonContainer;
   }
 
   render() {
@@ -162,110 +214,24 @@ handleNumberClick(e) {
             onChange={this.handleChange}
           />
           <br />
-          <CalculatorButton
-            buttonType="operator"
-            value="add"
-            displayText="+"
-            onClick={this.handleClick}
-          />
-          <CalculatorButton
-            buttonType="operator"
-            value="subtract"
-            displayText="-"
-            onClick={this.handleClick}
-          />
-          <CalculatorButton
-            buttonType="operator"
-            value="multiply"
-            displayText="x"
-            onClick={this.handleClick}
-          />
-          <CalculatorButton
-            buttonType="operator"
-            value="divide"
-            displayText="/"
-            onClick={this.handleClick}
-          />
-          <CalculatorButton
-            buttonType="operator"
-            value="equals"
-            displayText="="
-            onClick={this.handleClick}
-          />
-          <CalculatorButton
-            buttonType="operator"
-            value="clear"
-            displayText="C"
-            onClick={this.clearAll}
-          />
-          <CalculatorButton
-            buttonType="operator"
-            value="clearEntry"
-            displayText="CE"
-            onClick={this.clearEntry}
-          />
-
-          <CalculatorButton
-            buttonType=""
-            value="1"
-            displayText="1"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="2"
-            displayText="2"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="3"
-            displayText="3"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="4"
-            displayText="4"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="5"
-            displayText="5"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="6"
-            displayText="6"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="7"
-            displayText="7"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="8"
-            displayText="8"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="9"
-            displayText="9"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
-            value="0"
-            displayText="0"
-            onClick={this.handleNumberClick}
-          />
-
+          <div>
+            {this.createOperatorButtons()}
+            <CalculatorButton
+              buttonType="operator"
+              value="clear"
+              displayText="C"
+              onClick={this.clearAll}
+            />
+            <CalculatorButton
+              buttonType="operator"
+              value="clearEntry"
+              displayText="CE"
+              onClick={this.clearEntry}
+            />
+          </div>
+          <div>
+            {this.createNumberButtons()}
+          </div>
       </div>
     );
   }
