@@ -5,19 +5,22 @@ body {
 
 input {
   width: 100%;
-
   font-size: 30px;
   text-align: right;
+  border: 3px inset #929292;
+  border-radius: 4px;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 2% 96% 2%;
-  grid-template-rows: auto;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: repeat(2, auto) 5px auto 10px auto;
   grid-template-areas:
     "header header header"
     ". calculator-input ."
+    ". . ."
     ". operator-buttons ."
+    ". . ."
     ". number-buttons ."
     ". state-display ."
   ;
@@ -25,20 +28,22 @@ input {
 
 .button {
   margin: 1px;
-  /* width: 58px; */
   border-radius: 4px;
   font-weight: bold;
   font-size: 28px;
   cursor: pointer;
+  box-shadow: rgba(66, 66, 66, 0.76) 2px 2px 5px 1px;
 }
 
-/* csslint ignore:start */
 .header {
   grid-area: header;
+  font-size: 30px;
+  font-weight: bold;
   text-align: center;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  margin-bottom: 10px;
   background-color: #78aa34;
+  box-shadow: #5a5a5a 0 2px 9px 1px;
 }
 
 .calculator-input {
@@ -50,11 +55,7 @@ input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
-}
-
-.button-equals {
-  grid-column: 2 / 4;
-  grid-row: 3;
+  grid-gap: 4px;
 }
 
 .button-zero {
@@ -67,15 +68,40 @@ input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
+  grid-gap: 4px;
 }
 
 .button-number {
+  background-color: #70b0ff;
+  border-color: black;
+}
 
+.button-number:active {
+  border: 2px outset #717171;
+  background-color: #4196ff;
 }
 
 .button-operator {
   background-color: #ffcccc;
   border-color: #ff7e40 #f99 #ff4d53;
+}
+
+.button-operator:active {
+  border: 2px outset #bb2424;
+  background-color: #ef8b8b;
+}
+
+.button-equals {
+  grid-column: 3 / 4;
+  grid-row: 1 / 4;
+  background-color: #fff57c;
+  border-color: #ffb819 #ffc173 #ffdfe0;
+  font-size: 80px;
+}
+
+.button-equals:active {
+  border: 2px outset #8e5a1a;
+  background-color: #e4d734;
 }
 
 .state-display {
