@@ -8,7 +8,6 @@ Live demo found here: http://louis-pham--calculator-app.surge.sh/
 - still some unnatural operator behaviour
 
 ## Todo
-- add number buttons
 - make it look nice
 
 ---

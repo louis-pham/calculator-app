@@ -28,6 +28,7 @@ class Calculator extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleNumberClick = this.handleNumberClick.bind(this);
     this.clearEntry = this.clearEntry.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.state = {
@@ -122,12 +123,18 @@ class Calculator extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value);
     this.setState({
       inputValue: e.target.value,
       inputChanged: true,
     });
   }
+
+handleNumberClick(e) {
+  let currentInput = this.state.inputValue;
+  this.setState({
+    inputValue: parseFloat(currentInput.toString() + e.target.value),
+  });
+}
 
   clearEntry() {
     this.setState({
@@ -200,16 +207,65 @@ class Calculator extends React.Component {
 
           <CalculatorButton
             buttonType=""
-            value="0"
-            displayText="0"
-            onClick={this.handleNumberClick}
-          />
-          <CalculatorButton
-            buttonType=""
             value="1"
             displayText="1"
             onClick={this.handleNumberClick}
           />
+          <CalculatorButton
+            buttonType=""
+            value="2"
+            displayText="2"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="3"
+            displayText="3"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="4"
+            displayText="4"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="5"
+            displayText="5"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="6"
+            displayText="6"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="7"
+            displayText="7"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="8"
+            displayText="8"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="9"
+            displayText="9"
+            onClick={this.handleNumberClick}
+          />
+          <CalculatorButton
+            buttonType=""
+            value="0"
+            displayText="0"
+            onClick={this.handleNumberClick}
+          />
+
       </div>
     );
   }
