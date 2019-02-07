@@ -3,10 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function CalculatorButton(props) {
-  let buttonClass = props.buttonType === "operator" ? "button-operator" : "" ;
+  let buttonClass;
+  switch (props.buttonType) {
+    case "equals":
+      buttonClass = "button-operator button-equals";
+      break;
+    case "operator":
+      buttonClass = "button-operator";
+      break;
+    case "number":
+      buttonClass = "button-number";
+      buttonClass = (props.value === 0) ? buttonClass + " button-zero" : buttonClass;
+      break;
+    default:
+      buttonClass = "";
+  }
+
   return (
     <button
-      className={buttonClass}
+      className={"button " + buttonClass}
       value={props.value}
       onClick={props.onClick}>
       {props.displayText}
@@ -172,7 +187,7 @@ handleNumberClick(e) {
     for (let i=9; i >= 0; i--) {
       buttonContainer.push(
         <CalculatorButton
-          buttonType=""
+          buttonType="number"
           key={i}
           value={i}
           displayText={i}
@@ -194,9 +209,10 @@ handleNumberClick(e) {
     ];
 
     for (let button of buttons) {
+      let buttonType = (button.value === "equals") ? "equals" : "operator" ;
       buttonContainer.push(
         <CalculatorButton
-          buttonType="operator"
+          buttonType={buttonType}
           key={button.key}
           value={button.value}
           displayText={button.displayText}
@@ -209,40 +225,44 @@ handleNumberClick(e) {
 
   render() {
     return (
-      <div>
-          <div>{this.state.firstOperand}, {this.state.operator},  {this.state.secondOperand}</div>
+
+      <div className="container">
+        <div className="header">
+          Calculator
+        </div>
+        <div className="calculator-input">
           <CalculatorInput
             value={this.state.inputValue}
             onChange={this.handleChange}
           />
-          <br />
-          <div>
-            {this.createOperatorButtons()}
-            <CalculatorButton
-              buttonType="operator"
-              value="clear"
-              displayText="C"
-              onClick={this.clearAll}
-            />
-            <CalculatorButton
-              buttonType="operator"
-              value="clearEntry"
-              displayText="CE"
-              onClick={this.clearEntry}
-            />
-          </div>
-          <div>
-            {this.createNumberButtons()}
-          </div>
+        </div>
+
+        <div className="operator-buttons">
+          {this.createOperatorButtons()}
+          <CalculatorButton
+            buttonType="operator"
+            value="clear"
+            displayText="C"
+            onClick={this.clearAll}
+          />
+          <CalculatorButton
+            buttonType="operator"
+            value="clearEntry"
+            displayText="CE"
+            onClick={this.clearEntry}
+          />
+        </div>
+        <div className="number-buttons">
+          {this.createNumberButtons()}
+        </div>
+        <div className="state-display">{this.state.firstOperand}, {this.state.operator},  {this.state.secondOperand}</div>
       </div>
     );
   }
 }
 
 ReactDOM.render(
-  <div>
-    <Calculator />
-  </div>,
+  <Calculator />,
   document.querySelector("#root")
 );
 

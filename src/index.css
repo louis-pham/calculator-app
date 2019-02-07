@@ -1,27 +1,84 @@
 body {
-  display: grid;
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  margin: 0;
 }
 
 input {
   width: 100%;
-  max-width: 800px;
-  padding: 2px;
+
   font-size: 30px;
   text-align: right;
 }
 
-button {
-  padding: 3px 0;
+.container {
+  display: grid;
+  grid-template-columns: 2% 96% 2%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header"
+    ". calculator-input ."
+    ". operator-buttons ."
+    ". number-buttons ."
+    ". state-display ."
+  ;
+}
+
+.button {
   margin: 1px;
-  width: 58px;
+  /* width: 58px; */
   border-radius: 4px;
   font-weight: bold;
   font-size: 28px;
+  cursor: pointer;
+}
+
+/* csslint ignore:start */
+.header {
+  grid-area: header;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #78aa34;
+}
+
+.calculator-input {
+  grid-area: calculator-input;
+}
+
+.operator-buttons {
+  grid-area: operator-buttons;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+}
+
+.button-equals {
+  grid-column: 2 / 4;
+  grid-row: 3;
+}
+
+.button-zero {
+  grid-column: 1 / 4;
+  grid-row: 4;
+}
+
+.number-buttons {
+  grid-area: number-buttons;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+}
+
+.button-number {
+
 }
 
 .button-operator {
   background-color: #ffcccc;
   border-color: #ff7e40 #f99 #ff4d53;
 }
+
+.state-display {
+  grid-area: state-display;
+}
+/* csslint ignore:end */
