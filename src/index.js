@@ -173,6 +173,7 @@ handleNumberClick(e) {
       buttonContainer.push(
         <CalculatorButton
           buttonType=""
+          key={i}
           value={i}
           displayText={i}
           onClick={this.handleNumberClick}
@@ -185,17 +186,18 @@ handleNumberClick(e) {
   createOperatorButtons = () => {
     let buttonContainer = [];
     let buttons = [
-      { value: "add", displayText: "+" },
-      { value: "subtract", displayText: "-" },
-      { value: "multiply", displayText: "x" },
-      { value: "divide", displayText: "/" },
-      { value: "equals", displayText: "=" },
+      { key: 1, value: "add", displayText: "+" },
+      { key: 2, value: "subtract", displayText: "-" },
+      { key: 3, value: "multiply", displayText: "x" },
+      { key: 4, value: "divide", displayText: "/" },
+      { key: 5, value: "equals", displayText: "=" },
     ];
 
     for (let button of buttons) {
       buttonContainer.push(
         <CalculatorButton
           buttonType="operator"
+          key={button.key}
           value={button.value}
           displayText={button.displayText}
           onClick={this.handleClick}
