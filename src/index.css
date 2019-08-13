@@ -11,10 +11,20 @@ input {
   border-radius: 4px;
 }
 
+footer {
+  text-align: right;
+  padding: 20px;
+  background-color: #65cfe0;
+}
+
+#root {
+  height: 94vh;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 25% 50% 25%;
-  grid-template-rows: repeat(2, auto) 5px auto 10px auto;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: repeat(2, auto) 5px auto 10px auto 50px;
   grid-template-areas:
     "header header header"
     ". calculator-input ."
@@ -22,6 +32,7 @@ input {
     ". operator-buttons ."
     ". . ."
     ". number-buttons ."
+    ". . ."
   ; /* ". state-display ." */
 }
 
@@ -40,7 +51,7 @@ input {
   font-weight: bold;
   text-align: center;
   padding: 10px 0;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   background-color: #78aa34;
   box-shadow: #5a5a5a 0 2px 9px 1px;
 }
@@ -106,3 +117,21 @@ input {
 /* .state-display {
   grid-area: state-display;
 } */
+
+@media only screen and (min-width: 768px) {
+  .container {
+    grid-template-columns: 15% 70% 15%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    grid-template-columns: 20% 60% 20%;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    grid-template-columns: 30% 40% 30%;
+  }
+}
